@@ -1,0 +1,60 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/" routerLinkActive="active">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a routerLink="../" routerLinkActive="active">Tasks</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Add Task</li>
+    <li class="breadcrumb-item">
+      <a routerLink="../" routerLinkActive="active">Task List</a>
+    </li>
+  </ol>
+</nav>
+
+<form class="container" [formGroup]="taskForm" (ngSubmit)="handleSubmit()">
+  <h1 class="text-center">Create New Task</h1>
+
+  <div class="form-group">
+    <input
+      required
+      class="form-control"
+      type="text"
+      formControlName="taskType"
+      placeholder="Enter task type"
+    />
+    <small class="form-text text-muted">Enter task type here.</small>
+  </div>
+
+  <div class="form-group">
+    <input
+      required
+      class="form-control"
+      type="text"
+      formControlName="taskResponsibility"
+      placeholder="Enter task responsibility"
+    />
+    <small class="form-text text-muted"
+      >Enter who's responsibility this task is under here.</small
+    >
+  </div>
+
+  <div class="form-group">
+    <input
+      required
+      class="form-control"
+      type="datetime"
+      formControlName="taskEndDate"
+    />
+    <small class="form-text text-muted">Enter task's end date here.</small>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="!this.taskForm.valid"
+  >
+    Create
+  </button>
+</form>
