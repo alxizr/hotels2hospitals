@@ -1,62 +1,71 @@
-add task component
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
-      <a routerLink="/" routerLinkActive="active">Home</a>
+      <a routerLink="/">Home</a>
     </li>
     <li class="breadcrumb-item">
-      <a routerLink="../" routerLinkActive="active">Tasks</a>
+      <a routerLink="../">Tasks</a>
     </li>
     <li class="breadcrumb-item active" aria-current="page">Add Task</li>
     <li class="breadcrumb-item">
-      <a routerLink="../" routerLinkActive="active">Task List</a>
+      <a routerLink="../">Task List</a>
     </li>
   </ol>
 </nav>
 
 <form class="container" [formGroup]="taskForm" (ngSubmit)="handleSubmit()">
-  <h1 class="text-center">Create New Task</h1>
+  <mat-card-header>
+    <h1 class="text-center card-header">Create New Task</h1>
+  </mat-card-header>
 
-  <div class="form-group">
-    <input
-      required
-      class="form-control"
-      type="text"
-      formControlName="taskType"
-      placeholder="Enter task type"
-    />
-    <small class="form-text text-muted">Enter task type here.</small>
-  </div>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Task Type</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="taskType"
+        placeholder="Enter task type"
+      />
+      <mat-icon matSuffix>info</mat-icon>
+      <mat-hint>Enter task type here.</mat-hint>
+    </mat-form-field>
+  </p>
 
-  <div class="form-group">
-    <input
-      required
-      class="form-control"
-      type="text"
-      formControlName="taskResponsibility"
-      placeholder="Enter task responsibility"
-    />
-    <small class="form-text text-muted"
-      >Enter who's responsibility this task is under here.</small
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Responsibility</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Enter task responsibility"
+        formControlName="taskResponsibility"
+      />
+      <mat-icon matSuffix>how_to_reg</mat-icon>
+      <mat-hint>Enter who's responsibility this task is under here.</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose task end date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="taskEndDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+      <mat-hint>Enter task's end date here.</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!this.taskForm.valid"
     >
-  </div>
-
-  <div class="form-group">
-    <input
-      required
-      class="form-control"
-      type="datetime"
-      formControlName="taskEndDate"
-    />
-    <small class="form-text text-muted">Enter task's end date here.</small>
-  </div>
-
-  <button
-    type="submit"
-    class="btn btn-primary"
-    [disabled]="!this.taskForm.valid"
-  >
-    Create
-  </button>
+      Create
+    </button>
+  </p>
 </form>

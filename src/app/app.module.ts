@@ -8,17 +8,15 @@ import { MaterialModule } from "./modules/material/material.module";
 
 import { AppComponent } from "./app.component";
 
-import { HeadComponent } from "./components/Main/head/head.component";
-import { FootComponent } from "./components/Main/foot/foot.component";
-import { AdminHomeComponent } from "./components/admin/admin-home/admin-home.component";
-import { LoginComponent } from "./components/main/login/login.component";
+import { HeadComponent } from "./components/head/head.component";
+import { FootComponent } from "./components/foot/foot.component";
+import { LoginComponent } from "./components/login/login.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeadComponent,
     FootComponent,
-    AdminHomeComponent,
     LoginComponent
   ],
   imports: [

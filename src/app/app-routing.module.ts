@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { AdminHomeComponent } from "./components/admin/admin-home/admin-home.component";
-import { LoginComponent } from "./components/main/login/login.component";
+import { AdminHomeComponent } from "./modules/admin/components/admin-home/admin-home.component";
+import { LoginComponent } from "./components/login/login.component";
 
 const routes: Routes = [
   {
@@ -21,12 +21,8 @@ const routes: Routes = [
   },
   {
     path: "dashboard",
-    component: AdminHomeComponent,
-    children: [
-      { path: "list", component: AdminHomeComponent },
-      { path: "", pathMatch: "full", redirectTo: "list" },
-      { path: "**", redirectTo: "main" }
-    ]
+    loadChildren: () =>
+      import("./modules/admin/admin.module").then(m => m.AdminModule)
   },
 
   {
