@@ -10,6 +10,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSelectModule } from "@angular/material/select";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatCardModule } from "@angular/material/card";
 
 const materialModules = [
@@ -23,7 +24,8 @@ const materialModules = [
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatSelectModule
+  MatSelectModule,
+  MatProgressBarModule
 ];
 
 @NgModule({

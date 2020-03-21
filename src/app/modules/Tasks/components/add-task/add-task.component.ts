@@ -10,6 +10,7 @@ import { TasksService } from "src/app/modules/Tasks/services/Tasks/tasks.service
 })
 export class AddTaskComponent implements OnInit {
   taskForm: FormGroup = null;
+
   constructor(private readonly tasksvc: TasksService) {}
 
   ngOnInit(): void {
@@ -26,7 +27,7 @@ export class AddTaskComponent implements OnInit {
         Validators.minLength(2)
       ]),
       taskEndDate: new FormControl(
-        today.toISOString().split("T")[0],
+        today, //.toISOString().split("T")[0],
         Validators.required
       )
     });

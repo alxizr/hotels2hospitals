@@ -1,1 +1,68 @@
-<p>add-log works!</p>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      Logs
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Add Log</li>
+    <li class="breadcrumb-item">
+      <a routerLink="../">Log List</a>
+    </li>
+  </ol>
+</nav>
+
+<form class="container" [formGroup]="logForm" (ngSubmit)="handleSubmit()">
+  <mat-card-header>
+    <h1 class="text-center card-header">Create New Log</h1>
+  </mat-card-header>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Log Author</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Enter your name"
+        formControlName="logAuthor"
+      />
+      <mat-icon matSuffix>how_to_reg</mat-icon>
+      <mat-hint>Enter log type here.</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose log time & date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="logDateTime" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-hint>Enter log's time & date here.</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Log Description</mat-label>
+      <textarea
+        matInput
+        placeholder="Fill in the current log."
+        formControlName="logDescription"
+      ></textarea>
+      <mat-icon matSuffix>info</mat-icon>
+      <mat-hint>Enter log description here.</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <p class="d-flex justify-content-end">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!this.logForm.valid"
+    >
+      Create
+    </button>
+  </p>
+</form>

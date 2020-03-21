@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { ITask } from "src/app/modules/Tasks/models/itask";
+import { GlobalService } from "src/app/services/Global/global.service";
 
 @Injectable({
   providedIn: "root"
@@ -76,14 +77,26 @@ export class TasksService {
     }
   ]);
 
+  constructor(private readonly _gs: GlobalService) {}
+
   getAllTasks() {
     return this.tasks;
   }
 
   addNewTask = (task: ITask) => {
-    console.log(task);
-    this.tasks.next([...this.tasks.getValue(), task]);
-  };
+    this._gs.shouldShowGlobalProgressBar(
+      !this._gs.getGlobalProgressBar().getValue()
+    );
 
-  constructor() {}
+    console.log(task);
+
+    console.log("setting timeout");
+    setTimeout(() => {
+      this.tasks.next([...this.tasks.getValue(), task]);
+
+      this._gs.shouldShowGlobalProgressBar(
+        !this._gs.getGlobalProgressBar().getValue()
+      );
+    }, 5000);
+  };
 }

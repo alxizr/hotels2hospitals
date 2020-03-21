@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { GlobalService } from "src/app/services/Global/global.service";
 
 @Component({
   selector: "app-head",
@@ -10,11 +11,21 @@ export class HeadComponent implements OnInit {
     collapse: true
   };
 
-  constructor() {}
+  constructor(readonly gs: GlobalService) {}
 
-  ngOnInit(): void {}
+  _showProgressBar = false;
+
+  ngOnInit(): void {
+    this.gs.getGlobalProgressBar().subscribe(b => {
+      this._showProgressBar = b;
+    });
+  }
 
   handleMenuClick = () => {
     this.navbarClasses.collapse = !this.navbarClasses.collapse;
+  };
+
+  handleClick = () => {
+    this.gs.shouldShowGlobalProgressBar(!this._showProgressBar);
   };
 }

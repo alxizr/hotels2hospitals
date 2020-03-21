@@ -1,1 +1,78 @@
-<p>logs-list works!</p>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      Logs
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Log List</li>
+    <li class="breadcrumb-item">
+      <a routerLink="../add">Add Log</a>
+    </li>
+  </ol>
+</nav>
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input
+    MatFormFieldControl
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Filter for a specific log."
+  />
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table matSort [dataSource]="dataSource">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container>
+
+    <!-- logAuthor Column -->
+    <ng-container matColumnDef="logAuthor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Log Author
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.logAuthor }}</td>
+    </ng-container>
+
+    <!-- logDescription Column -->
+    <ng-container matColumnDef="logDescription">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Log Description</th>
+      <td mat-cell *matCellDef="let row">{{ row.logDescription }}</td>
+    </ng-container>
+
+    <!-- logDate  Column -->
+    <ng-container matColumnDef="logDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Log Date</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.logDateTime.toISOString().split("T")[0] }}
+      </td>
+    </ng-container>
+
+    <!-- logTime Column -->
+    <ng-container matColumnDef="logTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Log Time</th>
+      <td mat-cell *matCellDef="let row">
+        {{
+          row.logDateTime
+            .toISOString()
+            .split("T")[1]
+            .split(".")[0]
+        }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="handleRowClicked(row)"
+    ></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+</div>

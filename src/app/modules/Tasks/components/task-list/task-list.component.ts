@@ -12,7 +12,7 @@ import { TasksService } from "src/app/modules/Tasks/services/Tasks/tasks.service
   styleUrls: ["./task-list.component.scss"]
 })
 export class TaskListComponent implements OnInit {
-  _tasklist;
+  private _tasklist;
 
   displayedColumns: string[] = [
     "id",
@@ -48,5 +48,10 @@ export class TaskListComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  };
+
+  handleRowClicked = (ev?) => {
+    // add click event to table row
+    console.log("row clicked", ev);
   };
 }
