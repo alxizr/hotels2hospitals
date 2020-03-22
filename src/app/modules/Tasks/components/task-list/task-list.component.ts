@@ -30,7 +30,7 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit(): void {
     this.tasksvc.getAllTasks().subscribe(data => {
-      this._tasklist = data.map((x, i) => {
+      this._tasklist = [...data, ...data, ...data].map((x, i) => {
         return { ...x, id: i + 1 };
       });
 

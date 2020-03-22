@@ -1,6 +1,6 @@
 export interface ILog {
   id?: number;
-  logDateTime: Date;
+  logDateTime?: Date;
   logDescription: string;
   logAuthor: string;
 }
