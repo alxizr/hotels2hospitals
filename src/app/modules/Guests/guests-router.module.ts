@@ -11,8 +11,9 @@ const routes: Routes = [
     path: "",
     component: GuestsHomeComponent,
     children: [
-      { path: "list", component: GuestsListComponent },
+      { path: "add/:id", component: AddGuestComponent },
       { path: "add", component: AddGuestComponent },
+      { path: "list", component: GuestsListComponent },
       { path: "", pathMatch: "full", redirectTo: "list" }
     ]
   }
