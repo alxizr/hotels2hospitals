@@ -4,6 +4,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { GuestsService } from "../../services/Guests/guests.service";
 import { IGuest } from "../../models/iguest";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-guests-list",
@@ -11,7 +12,7 @@ import { IGuest } from "../../models/iguest";
   styleUrls: ["./guests-list.component.scss"]
 })
 export class GuestsListComponent implements OnInit {
-  private _loglist;
+  private _guestList;
 
   displayedColumns: string[] = [
     "firstName",
@@ -61,16 +62,19 @@ export class GuestsListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private readonly _guestsvc: GuestsService) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _guestsvc: GuestsService
+  ) {}
 
   ngOnInit(): void {
     this._guestsvc.getAllGuests().subscribe(data => {
-      this._loglist = data.map((x, i) => {
+      this._guestList = data.map((x, i) => {
         return { ...x, id: i + 1 };
       });
 
       // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(this._loglist);
+      this.dataSource = new MatTableDataSource(this._guestList);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -85,8 +89,10 @@ export class GuestsListComponent implements OnInit {
     }
   };
 
-  handleRowClicked = (ev?) => {
+  handleRowClicked = async (ev?) => {
     // add click event to table row
     console.log("row clicked", ev);
+
+    await this._router.navigate(["guests/add/", ev.id]);
   };
 }

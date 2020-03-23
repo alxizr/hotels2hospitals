@@ -30,7 +30,7 @@ const routes: Routes = [
     component: LoginComponent
   },
 
-  { path: "", pathMatch: "full", redirectTo: "login" },
+  { path: "", pathMatch: "full", redirectTo: "login" }
   { path: "**", redirectTo: "login" }
 ];
 

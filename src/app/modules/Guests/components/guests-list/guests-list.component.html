@@ -34,10 +34,13 @@
       </td>
     </ng-container>
 
-    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="5">
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </cdk-virtual-scroll-viewport>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="handleRowClicked(row)"
+      title="Click row to edit this guest"
+    ></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
