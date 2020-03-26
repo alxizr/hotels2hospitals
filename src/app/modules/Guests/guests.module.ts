@@ -16,7 +16,8 @@ import { AddGuestComponent } from "./components/add-guest/add-guest.component";
     GuestRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    
   ]
 })
 export class GuestsModule {}

@@ -1,13 +1,12 @@
 interface IGuestOptional {
-  conversation?: boolean;
-  religious?: boolean;
-  mda?: boolean;
-  guidelines?: boolean;
+  conversation: boolean;
+  religious: boolean;
+  mda: boolean;
+  guidelines: boolean;
   sentToKabala: boolean;
   released: boolean;
 
   roomNum: number;
-  age: number;
   numChildren: number;
 
   releaseDate: Date;
@@ -15,6 +14,7 @@ interface IGuestOptional {
   collectingDate: Date;
   receptionTime: Date;
   arrivingTime: Date;
+  birthDate: Date;
 
   collectingAddress: string;
   origin: string;

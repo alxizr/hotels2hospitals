@@ -15,6 +15,7 @@ export class GuestsListComponent implements OnInit {
   private _guestList;
 
   displayedColumns: string[] = [
+    "IDNumber",
     "firstName",
     "lastName",
     "serialNumber",
@@ -31,7 +32,6 @@ export class GuestsListComponent implements OnInit {
     "sentToKabala",
     "released",
     "roomNum",
-    "age",
     "numChildren",
     "releaseDate",
     "hafnayaTime",
@@ -50,12 +50,10 @@ export class GuestsListComponent implements OnInit {
     "foodRestrictions",
     "familyStatus",
     "sex",
-    "IDNumber",
     "kupatHolim",
     "status",
     "comments",
-    "disabilities",
-    "actions"
+    "disabilities"
   ];
   dataSource: MatTableDataSource<IGuest> = null;
 
@@ -63,8 +61,8 @@ export class GuestsListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
-    private readonly _router: Router,
-    private readonly _guestsvc: GuestsService
+    private readonly _guestsvc: GuestsService,
+    private readonly _router: Router
   ) {}
 
   ngOnInit(): void {
