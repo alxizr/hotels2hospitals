@@ -1,2 +1,24 @@
 <h1>here should be a login form</h1>
 <p>login works!</p>
+
+<form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+  <p>
+    <input
+      type="file"
+      formControlName="excelFile"
+      placeholder="Enter excel file here"
+      accept=".xls, .xlsx"
+      (change)="handleOnChange($event)"
+    />
+  </p>
+
+  <p>
+    <input type="text" placeholder="enter your name" />
+  </p>
+
+  <p class="d-flex justify-content-end">
+    <button mat-raised-button color="accent" type="submit">
+      Create
+    </button>
+  </p>
+</form>
